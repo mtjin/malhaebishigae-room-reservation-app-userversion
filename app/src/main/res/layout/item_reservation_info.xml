@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.mtjin.free_room.model.Reservation" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginBottom="@dimen/margin_4dp">
+
+        <TextView
+            android:id="@+id/tv_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12dp"
+            android:textSize="@dimen/text_size_20sp"
+            app:layout_constraintEnd_toStartOf="@id/text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:timestampTime="@{item.startTimestamp}"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4dp"
+            android:text="@string/to_time_text"
+            android:textSize="@dimen/text_size_20sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_end_time"
+            app:layout_constraintStart_toEndOf="@id/tv_start_time"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4dp"
+            android:textSize="@dimen/text_size_20sp"
+            app:layout_constraintStart_toEndOf="@id/text"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:timestampTime="@{item.endTimestamp}"
+            tools:text="15" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

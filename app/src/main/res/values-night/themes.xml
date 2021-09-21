@@ -1,16 +1,35 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.Freemeetingroomreservation" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
+
+    <!-- Material theme. -->
+    <style name="MaterialTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
+    </style>
+
+    <!-- Toolbar theme. -->
+    <style name="toolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!--Bottom Sheet Dialog-->
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_white_radius_16dp</item>
+    </style>
+
 </resources>

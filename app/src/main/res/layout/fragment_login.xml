@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.mtjin.free_room.views.login.LoginViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient_white_blue">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_view"
+            android:layout_width="@dimen/size_200dp"
+            android:layout_height="@dimen/size_200dp"
+            android:layout_marginTop="@dimen/margin_48dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toTopOf="@id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_logo" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/line_space_extra_8dp"
+            android:text="@string/login_title_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_24sp"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lottie_view" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_google_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/lottie_view"
+            app:layout_constraintStart_toStartOf="@id/lottie_view"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="@{vm.isLoading() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

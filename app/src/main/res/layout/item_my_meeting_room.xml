@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.mtjin.free_room.model.MyMeetingRoom" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_12dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:layout_marginBottom="@dimen/margin_12dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorWhiteGrayF4F4F4"
+            app:cardCornerRadius="@dimen/radius_16dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_16dp"
+                android:paddingTop="@dimen/padding_16dp"
+                android:paddingEnd="@dimen/padding_16dp"
+                android:paddingBottom="@dimen/padding_40dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_120dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_guide"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:urlImage="@{item.image}"
+                    tools:src="@drawable/ic_default_room" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_room"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/room_text"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/text_date"
+                    app:layout_constraintTop_toTopOf="@id/iv_image" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_room"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{item.roomName}"
+                    android:textSize="@dimen/text_size_20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_room"
+                    app:layout_constraintTop_toTopOf="@id/text_room"
+                    tools:text="서울" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:text="@string/date_input_text"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/iv_image"
+                    app:layout_constraintTop_toBottomOf="@id/text_room" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_date"
+                    app:layout_constraintTop_toTopOf="@id/text_date"
+                    bind:timestampDate="@{item.startTimestamp}"
+                    tools:text="2020-01-01" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:text="@string/time_input_text"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/iv_image"
+                    app:layout_constraintTop_toBottomOf="@id/text_date" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_time"
+                    app:layout_constraintTop_toTopOf="@id/text_time"
+                    bind:endTimestamp="@{item.endTimestamp}"
+                    bind:startTimestamp="@{item.startTimestamp}"
+                    tools:text="12:00~14:00" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8dp"
+                    android:text="@string/content_name_text"
+                    android:textSize="@dimen/text_size_20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/iv_image"
+                    app:layout_constraintTop_toBottomOf="@id/text_time" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{item.content}"
+                    android:textSize="@dimen/text_size_20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_content"
+                    app:layout_constraintTop_toTopOf="@id/text_content"
+                    tools:text="개발회의" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.skydoves.elasticviews.ElasticButton
+            android:id="@+id/btn_detail"
+            android:layout_width="@dimen/width_130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_blue_radius_8dp"
+            android:elevation="@dimen/elevation_4dp"
+            android:gravity="center"
+            android:text="@string/detail_info_text"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            app:button_duration="200"
+            app:button_scale="0.9"
+            app:layout_constraintBottom_toBottomOf="@id/cv_card"
+            app:layout_constraintEnd_toStartOf="@id/btn_reserve"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_card" />
+
+        <com.skydoves.elasticviews.ElasticButton
+            android:id="@+id/btn_reserve"
+            android:layout_width="@dimen/width_130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_blue_radius_8dp"
+            android:elevation="@dimen/elevation_4dp"
+            android:gravity="center"
+            android:text="@string/reservation_cancel_text"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            app:button_duration="200"
+            app:button_scale="0.9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_detail"
+            app:layout_constraintTop_toTopOf="@id/btn_detail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

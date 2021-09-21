@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1093427450157",
+    "project_id": "free-meeting-room-reservation",
+    "storage_bucket": "free-meeting-room-reservation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093427450157:android:b6a23289c01f25ded7c3a4",
+        "android_client_info": {
+          "package_name": "com.mtjin.free_room"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093427450157-pqdnk2ukl86pkeen0bc6858rbjc9qed7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD0ueQ9636RVzcIC2F4C9G0ZrF215dvBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093427450157-pqdnk2ukl86pkeen0bc6858rbjc9qed7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/splash_fragment">
+    <fragment
+        android:id="@+id/bottom_nav_1"
+        android:name="com.mtjin.free_room.views.all_meeting_room.AllMeetingRoomFragment"
+        android:label="BottomNavFragment1"
+        tools:layout="@layout/fragment_all_meeting_room">
+
+        <action
+            android:id="@+id/action_bottom_nav_1_to_reservation_fragment"
+            app:destination="@id/reservation_fragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_bottom_nav_1_to_reservation_detail_fragment"
+            app:destination="@id/reservation_detail_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bottom_nav_2"
+        android:name="com.mtjin.free_room.views.my_meeting_room.MyMeetingRoomFragment"
+        android:label="BottomNavFragment2"
+        tools:layout="@layout/fragment_my_meeting_room">
+        <action
+            android:id="@+id/action_bottom_nav_2_to_reservation_detail_fragment"
+            app:destination="@id/reservation_detail_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bottom_nav_3"
+        android:name="com.mtjin.free_room.views.profile.ProfileFragment"
+        android:label="BottomNavFragment3"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/bottom_nav_4"
+        android:name="com.mtjin.free_room.views.setting.SettingFragment"
+        android:label="BottomNavFragment4"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_bottom_nav_4_to_login_activity"
+            app:destination="@id/login_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/bottom_nav_1"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reservation_fragment"
+        android:name="com.mtjin.free_room.views.reservation.ReservationFragment"
+        android:label="ReservationFragment"
+        tools:layout="@layout/fragment_reservation">
+        <argument
+            android:name="room"
+            app:argType="com.mtjin.free_room.model.MeetingRoom" />
+        <action
+            android:id="@+id/action_reservation_fragment_to_bottom_nav_2"
+            app:destination="@id/bottom_nav_2"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/bottom_nav_1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reservation_detail_fragment"
+        android:name="com.mtjin.free_room.views.reservation_detail.ReservationDetailFragment"
+        android:label="ReservationDetailFragment"
+        tools:layout="@layout/fragment_reservation_detail">
+        <argument
+            android:name="room"
+            app:argType="com.mtjin.free_room.model.MeetingRoom" />
+        <argument
+            android:name="myMeetingRoom"
+            app:argType="com.mtjin.free_room.model.MyMeetingRoom" />
+        <action
+            android:id="@+id/action_reservation_detail_fragment_to_reservation_fragment"
+            app:destination="@id/reservation_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.mtjin.free_room.views.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_fragment_to_bottom_nav_1"
+            app:destination="@id/bottom_nav_1"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/login_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/splash_fragment"
+        android:name="com.mtjin.free_room.views.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splash_fragment_to_login_fragment"
+            app:destination="@id/login_fragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/splash_fragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splash_fragment_to_bottom_nav_1"
+            app:destination="@id/bottom_nav_1"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splash_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <activity
+        android:id="@+id/main_activity"
+        android:name="com.mtjin.free_room.views.main.MainActivity"
+        android:label="MainActivity"
+        tools:layout="@layout/activity_main" />
+
+</navigation>

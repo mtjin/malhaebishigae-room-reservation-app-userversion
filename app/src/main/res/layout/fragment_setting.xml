@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.mtjin.free_room.views.setting.SettingViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->vm.showLogoutDialog()}"
+            android:padding="@dimen/padding_28dp"
+            android:text="@string/logout_text"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_divide_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_2dp"
+            android:background="@color/colorWhiteGrayF4F4F4"
+            app:layout_constraintTop_toBottomOf="@id/tv_logout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_delete_cache"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->vm.showDeleteCacheDialog()}"
+            android:padding="@dimen/padding_28dp"
+            android:text="@string/delete_cache_text"
+            android:textSize="@dimen/text_size_24sp"
+            app:layout_constraintTop_toBottomOf="@id/view_divide_1" />
+
+        <View
+            android:id="@+id/view_divide_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_2dp"
+            android:background="@color/colorWhiteGrayF4F4F4"
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_cache" />
+
+        <TextView
+            android:id="@+id/tv_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_28dp"
+            android:text="@string/alarm_setting_text"
+            android:textSize="@dimen/text_size_24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_divide_2" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/sw_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_28dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_alarm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_alarm" />
+
+        <View
+            android:id="@+id/view_divide_3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_2dp"
+            android:background="@color/colorWhiteGrayF4F4F4"
+            app:layout_constraintTop_toBottomOf="@id/tv_alarm" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_business_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/business_code_enter_hint"
+            android:textSize="@dimen/text_size_24sp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_business_code"
+            app:layout_constraintEnd_toStartOf="@id/btn_business_code"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_divide_3"
+            app:layout_constraintTop_toTopOf="@id/btn_business_code" />
+
+        <Button
+            android:id="@+id/btn_business_code"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/colorWhiteBlue"
+            android:onClick="@{()->vm.saveBusinessCode()}"
+            android:padding="@dimen/padding_28dp"
+            android:text="@string/business_code_enroll_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/et_business_code"
+            app:layout_constraintTop_toBottomOf="@id/view_divide_3" />
+
+        <View
+            android:id="@+id/view_divide_4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_2dp"
+            android:background="@color/colorWhiteGrayF4F4F4"
+            app:layout_constraintTop_toBottomOf="@id/btn_business_code" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="@{vm.isLoading() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

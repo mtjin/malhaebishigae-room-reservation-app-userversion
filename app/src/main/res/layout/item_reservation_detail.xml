@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.mtjin.free_room.model.Reservation" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_120dp"
+            android:background="@color/colorWhiteBlue"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:roomInUseEndTimestamp="@{item.endTimestamp}"
+            bind:roomInUseStartTimestamp="@{item.startTimestamp}"
+            tools:text="@string/status_text" />
+
+        <View
+            android:id="@+id/view_divide_1"
+            android:layout_width="@dimen/width_2dp"
+            android:layout_height="0dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="@id/tv_status"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:layout_constraintStart_toEndOf="@id/tv_status"
+            app:layout_constraintTop_toTopOf="@id/tv_status" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_120dp"
+            android:background="@color/colorWhiteGrayA3A3A3"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_content"
+            app:layout_constraintStart_toEndOf="@id/tv_status"
+            app:layout_constraintTop_toTopOf="@id/tv_status"
+            bind:endTimestamp="@{item.endTimestamp}"
+            bind:startTimestamp="@{item.startTimestamp}"
+            tools:text="11:00\n~\n12:00" />
+
+        <View
+            android:id="@+id/view_divide_2"
+            android:layout_width="@dimen/width_2dp"
+            android:layout_height="0dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="@id/tv_status"
+            app:layout_constraintEnd_toStartOf="@id/tv_content"
+            app:layout_constraintStart_toEndOf="@id/tv_time"
+            app:layout_constraintTop_toTopOf="@id/tv_status" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_120dp"
+            android:background="@color/colorWhiteGrayA3A3A3"
+            android:gravity="center"
+            android:text="@{item.content}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_register"
+            app:layout_constraintStart_toEndOf="@id/tv_time"
+            app:layout_constraintTop_toTopOf="@id/tv_status"
+            tools:text="설계 테스트" />
+
+        <View
+            android:id="@+id/view_divide_3"
+            android:layout_width="@dimen/width_2dp"
+            android:layout_height="0dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="@id/tv_status"
+            app:layout_constraintEnd_toStartOf="@id/tv_register"
+            app:layout_constraintStart_toEndOf="@id/tv_content"
+            app:layout_constraintTop_toTopOf="@id/tv_status" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_120dp"
+            android:background="@color/colorWhiteGrayA3A3A3"
+            android:gravity="center"
+            android:text="@{item.register}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_content"
+            app:layout_constraintTop_toTopOf="@id/tv_status"
+            tools:text="홍길동" />
+
+        <View
+            android:id="@+id/view_underline"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_2dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

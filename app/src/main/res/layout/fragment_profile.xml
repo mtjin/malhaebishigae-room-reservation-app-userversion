@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.mtjin.free_room.views.profile.ProfileViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_32dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_qr_code"
+                android:layout_width="@dimen/size_270dp"
+                android:layout_height="@dimen/size_270dp"
+                android:layout_marginTop="@dimen/margin_28dp"
+                android:background="@drawable/shape_stroke_blue_radius_8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/colorBlack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:drawableEnd="@drawable/ic_cloud_download_white_blue_24dp"
+                android:drawablePadding="@dimen/margin_8dp"
+                android:gravity="center"
+                android:onClick="@{()->vm.checkPermission()}"
+                android:text="@string/qr_code_download_text"
+                android:textColor="@color/colorWhiteBlue00E2FF"
+                android:textSize="@dimen/text_size_16sp"
+                app:layout_constraintEnd_toEndOf="@id/iv_qr_code"
+                app:layout_constraintStart_toStartOf="@id/iv_qr_code"
+                app:layout_constraintTop_toBottomOf="@id/iv_qr_code" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tv_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8dp"
+                android:layout_marginTop="@dimen/margin_28dp"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:background="@drawable/shape_white_gray_radius_16dp"
+                android:drawableStart="@drawable/ic_baseline_person_black_24dp"
+                android:drawablePadding="@dimen/padding_8dp"
+                android:focusableInTouchMode="false"
+                android:hint="@string/id_text"
+                android:text="@={vm.userId}"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintEnd_toEndOf="@id/iv_qr_code"
+                app:layout_constraintStart_toStartOf="@id/iv_qr_code"
+                app:layout_constraintTop_toBottomOf="@id/tv_logo"
+                tools:text="WM60000" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tv_pw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:background="@drawable/shape_white_gray_radius_16dp"
+                android:drawableStart="@drawable/ic_baseline_password_black_24dp"
+                android:drawablePadding="@dimen/padding_8dp"
+                android:focusableInTouchMode="false"
+                android:hint="@string/pw_text"
+                android:text="@={vm.userPw}"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_id"
+                app:layout_constraintStart_toStartOf="@id/tv_id"
+                app:layout_constraintTop_toBottomOf="@id/tv_id"
+                tools:text="12345677" />
+
+            <com.skydoves.elasticviews.ElasticButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:background="@drawable/shape_blue_radius_16dp"
+                android:onClick="@{()->vm.requestRevise()}"
+                android:textColor="@color/colorWhite"
+                app:checkButton_duration="200"
+                app:checkButton_scale="0.9"
+                app:layout_constraintEnd_toEndOf="@id/tv_id"
+                app:layout_constraintStart_toStartOf="@id/tv_id"
+                app:layout_constraintTop_toBottomOf="@id/tv_pw"
+                bind:reviseState="@{vm.reviseState}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
