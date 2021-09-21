@@ -70,9 +70,9 @@ class SettingViewModel @Inject constructor(
             compositeDisposable.add(
                 profileRepository.insertUserByBusinessCode(
                     businessCode.value.toString()
-                )
-                    .subscribeOn(Schedulers.io())
+                ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnComplete { deleteCache() }
                     .doOnSubscribe { showLottieProgress() }
                     .doAfterTerminate { hideLottieProgress() }
                     .subscribe({
