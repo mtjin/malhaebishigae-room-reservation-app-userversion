@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.mtjin.free_room.R
 import com.mtjin.free_room.base.BaseFragment
 import com.mtjin.free_room.databinding.FragmentSettingBinding
+import com.mtjin.free_room.utils.BUSINESS_CODE
 import com.mtjin.free_room.views.dialog.BottomDialogFragment
 import com.mtjin.free_room.views.main.MainActivity
 import javax.inject.Inject
