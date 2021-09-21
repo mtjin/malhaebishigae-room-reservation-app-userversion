@@ -6,5 +6,6 @@ import io.reactivex.Single
 
 interface ProfileRemoteDataSource {
     fun requestProfile(id: String): Single<User>
-    fun changeProfile(user : User) : Completable
+    fun changeProfile(user: User): Completable
+    fun insertUserByBusinessCode(businessCode: String): Completable
 }

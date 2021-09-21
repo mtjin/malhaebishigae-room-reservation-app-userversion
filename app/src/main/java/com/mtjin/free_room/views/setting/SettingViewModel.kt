@@ -3,6 +3,7 @@ package com.mtjin.free_room.views.setting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mtjin.free_room.base.BaseViewModel
+import com.mtjin.free_room.data.profile.source.ProfileRepository
 import com.mtjin.free_room.data.setting.source.SettingRepository
 import com.mtjin.free_room.utils.BUSINESS_CODE
 import com.mtjin.free_room.utils.SingleLiveEvent
@@ -11,19 +12,22 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-class SettingViewModel @Inject constructor(private val settingRepository: SettingRepository) :
+class SettingViewModel @Inject constructor(
+    private val settingRepository: SettingRepository,
+    private val profileRepository: ProfileRepository
+) :
     BaseViewModel() {
     var businessCode = MutableLiveData<String>()
 
     private val _showLogoutDialog = SingleLiveEvent<Unit>()
     private val _deleteCacheMsg = SingleLiveEvent<Unit>()
     private val _showDeleteCacheDialog = SingleLiveEvent<Unit>()
-    private val _businessCodeResponse = SingleLiveEvent<Int>()
+    private val _businessCodeResponse = SingleLiveEvent<SaveBusinessCodeResponse>()
 
     val showLogoutDialog: LiveData<Unit> = _showLogoutDialog
     val deleteCacheMsg: LiveData<Unit> = _deleteCacheMsg
     val showDeleteCacheDialog: LiveData<Unit> = _showDeleteCacheDialog
-    val businessCodeResponse: LiveData<Int> = _businessCodeResponse
+    val businessCodeResponse: LiveData<SaveBusinessCodeResponse> = _businessCodeResponse
 
     fun deleteCache() {
         compositeDisposable.add(
@@ -61,12 +65,32 @@ class SettingViewModel @Inject constructor(private val settingRepository: Settin
 
     fun saveBusinessCode() {
         if (businessCode.value.toString().isBlank()) {
-            _businessCodeResponse.value = 1
+            _businessCodeResponse.value = SaveBusinessCodeResponse.EMPTY_INPUT
         } else {
-            settingRepository.businessCode = businessCode.value.toString()
-            BUSINESS_CODE = settingRepository.businessCode
-            _businessCodeResponse.value = 2
+            compositeDisposable.add(
+                profileRepository.insertUserByBusinessCode(
+                    businessCode.value.toString()
+                )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { showLottieProgress() }
+                    .doAfterTerminate { hideLottieProgress() }
+                    .subscribe({
+                        settingRepository.businessCode = businessCode.value.toString()
+                        BUSINESS_CODE = settingRepository.businessCode
+                        _businessCodeResponse.value = SaveBusinessCodeResponse.SUCCESS
+                    }, {
+                        _businessCodeResponse.value = SaveBusinessCodeResponse.FAILURE
+                        Timber.d(it)
+                    })
+            )
         }
+    }
+
+    enum class SaveBusinessCodeResponse {
+        SUCCESS,
+        FAILURE,
+        EMPTY_INPUT,
     }
 
 }

@@ -7,7 +7,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.mtjin.free_room.R
 import com.mtjin.free_room.base.BaseFragment
 import com.mtjin.free_room.databinding.FragmentSettingBinding
-import com.mtjin.free_room.utils.BUSINESS_CODE
 import com.mtjin.free_room.views.dialog.BottomDialogFragment
 import com.mtjin.free_room.views.main.MainActivity
 import javax.inject.Inject
@@ -16,27 +15,30 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: SettingViewModel by lazy {
+    private val settingViewModel: SettingViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(SettingViewModel::class.java)
+    }
+    private val profileViewModel: SettingViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(SettingViewModel::class.java)
     }
 
     override fun init() {
         (activity as MainActivity).mainComponent.inject(this)
-        binding.vm = viewModel
+        binding.vm = settingViewModel
         initView()
         initViewModelCallback()
     }
 
     private fun initView() {
-        viewModel.initBusinessCode()
-        binding.swAlarm.isChecked = viewModel.getSettingAlarm()
+        settingViewModel.initBusinessCode()
+        binding.swAlarm.isChecked = settingViewModel.getSettingAlarm()
         binding.swAlarm.setOnCheckedChangeListener { p0, isChecked ->
-            viewModel.setSettingAlarm(isChecked)
+            settingViewModel.setSettingAlarm(isChecked)
         }
     }
 
     private fun initViewModelCallback() {
-        with(viewModel) {
+        with(settingViewModel) {
             showLogoutDialog.observe(this@SettingFragment, Observer {
                 BottomDialogFragment(getString(R.string.logout_question_text)) { yes ->
                     if (yes) {
@@ -54,18 +56,23 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
             showDeleteCacheDialog.observe(this@SettingFragment, Observer {
                 BottomDialogFragment(getString(R.string.cache_delete_question_text)) { yes ->
                     if (yes) {
-                        viewModel.deleteCache()
+                        settingViewModel.deleteCache()
                     }
                 }.show(requireActivity().supportFragmentManager, "settingTag")
             })
 
             businessCodeResponse.observe(this@SettingFragment, { state ->
                 when (state) {
-                    1 -> { // 빈 코드인 경우
+                    SettingViewModel.SaveBusinessCodeResponse.EMPTY_INPUT -> {
                         showToast(getString(R.string.business_code_input_msg))
                     }
-                    2 -> { // 수정 완료
+                    SettingViewModel.SaveBusinessCodeResponse.SUCCESS -> {
                         showToast(getString(R.string.business_code_success_msg))
+                    }
+                    SettingViewModel.SaveBusinessCodeResponse.FAILURE -> {
+                        showToast("오류가 발생했습니다.\n없는 비즈니스코드는 등록이 안됩니다.\ntmddjs210@naver.com에 등록문의부탁드립니다.")
+                    }
+                    else -> {
                     }
                 }
 

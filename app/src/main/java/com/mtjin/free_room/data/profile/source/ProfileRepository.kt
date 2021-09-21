@@ -11,4 +11,5 @@ interface ProfileRepository {
     fun requestRemoteProfile(id: String): Single<User>
     fun changeProfile(user: User): Completable
     fun saveQrCodeFile(bitmap: Bitmap): Completable
+    fun insertUserByBusinessCode(businessCode: String): Completable
 }

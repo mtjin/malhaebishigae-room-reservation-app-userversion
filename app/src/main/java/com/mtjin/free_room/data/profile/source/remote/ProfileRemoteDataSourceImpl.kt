@@ -1,14 +1,11 @@
 package com.mtjin.free_room.data.profile.source.remote
 
-import com.mtjin.free_room.model.User
-import com.mtjin.free_room.utils.BUSINESS_CODE
-import com.mtjin.free_room.utils.NAME
-import com.mtjin.free_room.utils.PW
-import com.mtjin.free_room.utils.USER
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.mtjin.free_room.model.User
+import com.mtjin.free_room.utils.*
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -57,6 +54,32 @@ class ProfileRemoteDataSourceImpl @Inject constructor(private val database: Data
                                 }
                         }
                     }
+                })
+        }
+    }
+
+    override fun insertUserByBusinessCode(businessCode: String): Completable {
+        return Completable.create { emitter ->
+            database.child(USER)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+                        emitter.onError(error.toException())
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.hasChild(businessCode)) { // 해당 비즈니스 코드가 등록 되어있는 경우만 추가
+                            database.child(USER).child(businessCode).child(uuid)
+                                .setValue(User(id = uuid, fcm = fcmToken, name = uuid, pw = uuid))
+                                .addOnSuccessListener {
+                                    emitter.onComplete()
+                                }.addOnFailureListener {
+                                    emitter.onError(it)
+                                }
+                        } else {
+                            emitter.onError(Throwable("등록안된 비즈니스 코드에러"))
+                        }
+                    }
+
                 })
         }
     }
