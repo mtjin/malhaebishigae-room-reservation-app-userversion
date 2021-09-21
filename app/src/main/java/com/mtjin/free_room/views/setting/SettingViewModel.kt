@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mtjin.free_room.base.BaseViewModel
 import com.mtjin.free_room.data.setting.source.SettingRepository
+import com.mtjin.free_room.utils.BUSINESS_CODE
 import com.mtjin.free_room.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -63,6 +64,7 @@ class SettingViewModel @Inject constructor(private val settingRepository: Settin
             _businessCodeResponse.value = 1
         } else {
             settingRepository.businessCode = businessCode.value.toString()
+            BUSINESS_CODE = settingRepository.businessCode
             _businessCodeResponse.value = 2
         }
     }

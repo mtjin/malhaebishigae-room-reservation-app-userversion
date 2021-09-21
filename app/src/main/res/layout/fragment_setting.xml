@@ -81,6 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/business_code_enter_hint"
+            android:text="@={vm.businessCode}"
             android:textSize="@dimen/text_size_24sp"
             app:layout_constraintBottom_toBottomOf="@id/btn_business_code"
             app:layout_constraintEnd_toStartOf="@id/btn_business_code"
