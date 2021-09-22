@@ -1,7 +1,7 @@
 # 말해보시개 회의실 예약관리 앱 -유저 스마트폰 버전-
 심플한 말해보시개 회의실 예약관리 안드로이드 앱입니다.
 
-
+[회의실 앞 태블릿 버전 저장소](https://github.com/mtjin/malhaebishigae-room-reservation-app-tablet-version)
 
 사용기술
 ---
