@@ -48,7 +48,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
     // test
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:3.3.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -70,6 +69,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.0.2'
     implementation 'com.google.firebase:firebase-core:19.0.1'
     implementation 'com.google.firebase:firebase-iid:21.1.0'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
 
     // jetpack navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
