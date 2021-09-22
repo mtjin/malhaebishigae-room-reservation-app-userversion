@@ -58,7 +58,6 @@
     <string name="auto_login_text">자동 로그인</string>
     <string name="login_fail_text">로그인에 실패했습니다</string>
     <string name="id_pw_length_max_text">아이디 비밀번호는 20자 이하로 해주세요.</string>
-    <string name="login_title_text">말해보시개\n회의실 예약관리앱</string>
     <string name="bottom_nav4_text">옵션</string>
     <string name="logout_text">로그아웃</string>
     <string name="delete_cache_text">캐시 데이터 삭제</string>

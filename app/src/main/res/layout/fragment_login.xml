@@ -46,7 +46,7 @@
             android:layout_marginTop="@dimen/margin_4dp"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/line_space_extra_8dp"
-            android:text="@string/login_title_text"
+            android:text="말해보시개\n-회의실 예약관리 앱-"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_size_24sp"
             app:layout_constraintBottom_toTopOf="@id/gl_horizontal"
