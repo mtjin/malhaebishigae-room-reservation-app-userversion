@@ -77,4 +77,5 @@
     <string name="business_code_example_text">BUSINESS_CODE_EXAMPLE</string>
     <string name="business_code_input_msg">코드를 입력해주세요</string>
     <string name="business_code_success_msg">코드가 등록되었습니다\n아이디, 비밀번호가 초기화됩니다</string>
+    <string name="question_developer_text">문의 : tmddjs210@naver.com</string>
 </resources>
